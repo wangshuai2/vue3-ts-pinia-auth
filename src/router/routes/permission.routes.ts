@@ -1,6 +1,7 @@
-import type { IRouteRecord } from '@/types/routes'
+import type { RouteRecordRaw } from 'vue-router'
+import { CirclePlus } from '@element-plus/icons-vue'
 
-export const PERMISSION_ROUTES: IRouteRecord[] = [
+export const PERMISSION_ROUTES: RouteRecordRaw[] = [
   {
     path: '/permission',
     name: 'Permission',
@@ -12,13 +13,15 @@ export const PERMISSION_ROUTES: IRouteRecord[] = [
         component: () => import('@/views/permission/page.vue'),
         meta: {
           title: '页面权限',
-          permission: ['admin', 'editor']
+          permission: ['admin', 'editor'],
+          icon: 'virtual:Flash'
         }
       }
     ],
     meta: {
       title: '权限测试页',
-      permission: ['admin']
+      permission: ['admin'],
+      icon: 'virtual:Flash'
     }
   },
   {
@@ -27,7 +30,8 @@ export const PERMISSION_ROUTES: IRouteRecord[] = [
     component: () => import('@/views/signed/index.vue'),
     meta: {
       title: '登录后测试页',
-      permission: ['admin']
+      permission: ['admin'],
+      icon: CirclePlus
     }
   },
   {
@@ -36,7 +40,7 @@ export const PERMISSION_ROUTES: IRouteRecord[] = [
     component: () => import('@/views/signed/index.vue'),
     meta: {
       title: '登录后测试页2',
-      permission: ['admin']
+      permission: ['editor']
     }
   },
   {

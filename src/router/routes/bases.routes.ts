@@ -1,6 +1,6 @@
-import type { IRouteRecord } from '@/types/routes'
+import type { RouteRecordRaw } from 'vue-router'
 
-export const BASE_ROUTES: IRouteRecord[] = [
+export const BASE_ROUTES: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Root',

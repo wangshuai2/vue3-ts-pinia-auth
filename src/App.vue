@@ -21,7 +21,7 @@ const handleSignout = () => {
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-
+      <svg-icon name="Flash" />
       <div>
         <p>登录状态: {{ !!token }}</p>
         <p>Token: {{ token }}</p>

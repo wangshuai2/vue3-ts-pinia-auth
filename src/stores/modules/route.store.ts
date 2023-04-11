@@ -1,5 +1,4 @@
 import { StoreEnum } from '@/config/store.enum'
-import type { IRouteRecord } from '@/types/routes'
 import { generateAuthRoutes } from '@/utils/menuToRoutes'
 import { defineStore } from 'pinia'
 import { PERMISSION_ROUTES } from '@/router/routes/permission.routes'
@@ -10,15 +9,13 @@ interface IRouteStore {
   isInitAuthRoute: boolean
   routesList: RouteRecordRaw[]
   routesKeepAliveList: string[]
-  menuList: IRouteRecord[]
 }
 
 export const useRouteStore = defineStore(StoreEnum.ROUTER_STORE, {
   state: (): IRouteStore => ({
     isInitAuthRoute: false,
     routesList: [],
-    routesKeepAliveList: [],
-    menuList: []
+    routesKeepAliveList: []
   }),
   getters: {
     /**
@@ -44,7 +41,6 @@ export const useRouteStore = defineStore(StoreEnum.ROUTER_STORE, {
     generateRoutes(roles: rolesType) {
       const authRoutes: RouteRecordRaw[] = generateAuthRoutes(PERMISSION_ROUTES, roles)
       this.routesList = authRoutes
-      this.menuList = PERMISSION_ROUTES
 
       authRoutes?.forEach((item) => {
         router.addRoute('Root', item)
@@ -55,7 +51,6 @@ export const useRouteStore = defineStore(StoreEnum.ROUTER_STORE, {
     },
     routerReset() {
       this.routesList = []
-      this.menuList = []
       this.isInitAuthRoute = false
     }
   }

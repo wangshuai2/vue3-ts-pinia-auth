@@ -4,15 +4,19 @@ import { useCreatePinia } from './stores'
 import { setupRouter } from './router'
 
 import './assets/main.css'
+import 'virtual:svg-icons-register'
+import SvgIcon from './components/SvgIcon/index.vue'
 
-function setupApp() {
+async function setupApp() {
   const app: App = createApp(RootApp)
 
   // 初始化store
   useCreatePinia(app)
 
   // 初始化路由
-  setupRouter(app)
+  await setupRouter(app)
+
+  app.component('SvgIcon', SvgIcon)
 
   app.mount('#app')
 }

@@ -24,17 +24,17 @@ export const menuToRoutes = (menu: IRouteRecord[], path?: string): RouteRecordRa
 
 export /**
  * @description: 生成权限路由
- * @param {IRouteRecord[]} routes
+ * @param {RouteRecordRaw[]} routes
  * @param {rolesType} roles
  * @return {*}  {RouteRecordRaw[]}
  */
 const generateAuthRoutes = (
-  routes: IRouteRecord[],
+  routes: RouteRecordRaw[],
   roles: rolesType,
   path?: string
 ): RouteRecordRaw[] => {
   const authRoutes: RouteRecordRaw[] = []
-  routes?.forEach((item: IRouteRecord) => {
+  routes?.forEach((item: RouteRecordRaw) => {
     if (!item.meta?.permission?.includes(roles)) return
     const tmpPath = resolve(path || '', item.path)
     const routerItem = {

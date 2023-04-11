@@ -7,7 +7,7 @@
     @open="handleOpen"
     @close="handleClose"
   >
-    <MenuItem v-for="item in menuList" :key="item.path" :item="item" />
+    <MenuItem v-for="item in routesList" :key="item.path" :item="item" />
   </el-menu>
 </template>
 
@@ -24,8 +24,8 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-const { menuList } = storeToRefs(useRouteStore())
-console.log(menuList.value)
+const { routesList } = storeToRefs(useRouteStore())
+console.log(routesList.value)
 
 const route = useRoute()
 const currentRoute = route.fullPath
