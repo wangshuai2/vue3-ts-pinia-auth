@@ -16,7 +16,7 @@ export const BASE_ROUTES: IRouteRecord[] = [
     component: () => import('@/views/login/index.vue')
   },
   {
-    path: '/:pathMatch(.*)*',
+    path: '/404',
     name: 'NotFound',
     component: () => import('@/views/NotFoundView.vue')
   }

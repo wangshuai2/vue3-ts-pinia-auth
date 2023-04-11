@@ -4,6 +4,7 @@ import { generateAuthRoutes } from '@/utils/menuToRoutes'
 import { defineStore } from 'pinia'
 import { PERMISSION_ROUTES } from '@/router/routes/permission.routes'
 import type { RouteRecordRaw } from 'vue-router'
+import { router } from '@/router'
 
 interface IRouteStore {
   isInitAuthRoute: boolean
@@ -44,6 +45,12 @@ export const useRouteStore = defineStore(StoreEnum.ROUTER_STORE, {
       const authRoutes: RouteRecordRaw[] = generateAuthRoutes(PERMISSION_ROUTES, roles)
       this.routesList = authRoutes
       this.menuList = PERMISSION_ROUTES
+
+      authRoutes?.forEach((item) => {
+        router.addRoute('Root', item)
+      })
+
+      // console.log('router.getRoutes()', router.getRoutes())
       this.isInitAuthRoute = true
     },
     routerReset() {

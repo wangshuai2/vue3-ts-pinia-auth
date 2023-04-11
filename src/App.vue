@@ -2,10 +2,17 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useUserStore } from './stores/modules/user.store'
+import { useRouteStore } from './stores/modules/route.store'
 import { storeToRefs } from 'pinia'
 
+const routerStore = useRouteStore()
 const userStore = useUserStore()
 const { token } = storeToRefs(userStore)
+
+const handleSignout = () => {
+  userStore.logout()
+  routerStore.routerReset()
+}
 </script>
 
 <template>
@@ -24,7 +31,12 @@ const { token } = storeToRefs(userStore)
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/permission">Permission</RouterLink>
       </nav>
+
+      <div>
+        <button v-if="!!token" type="button" @click="handleSignout">退出登录</button>
+      </div>
     </div>
   </header>
 

@@ -2,6 +2,7 @@ import { StorageEnum } from '@/config/storage.enum'
 import { StoreEnum } from '@/config/store.enum'
 import { clsStorage } from '@/utils/storage'
 import { defineStore } from 'pinia'
+import { useRouteStore } from './route.store'
 
 /**
  * @description: 用户角色
@@ -105,6 +106,10 @@ const useUserStore = defineStore(StoreEnum.USER_STORE, {
             age: 18
           })
           clsStorage.set(StorageEnum.roles, 'admin')
+
+          const routeStore = useRouteStore()
+          routeStore.generateRoutes('admin')
+
           resolve(true)
         } else {
           reject()

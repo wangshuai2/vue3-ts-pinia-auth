@@ -27,7 +27,7 @@ export const PERMISSION_ROUTES: IRouteRecord[] = [
     component: () => import('@/views/signed/index.vue'),
     meta: {
       title: '登录后测试页',
-      permission: ['admin', 'visitor']
+      permission: ['admin']
     }
   }
 ]

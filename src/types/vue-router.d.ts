@@ -7,5 +7,7 @@ declare module 'vue-router' {
     isAdmin?: boolean
     // 每个路由都必须声明
     requiresAuth?: boolean
+
+    href?: string
   }
 }

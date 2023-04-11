@@ -1,6 +1,6 @@
 import type { IRouteRecord } from '@/types/routes'
 import type { RouteRecordRaw } from 'vue-router'
-import path from 'path'
+import { resolve } from 'path-browserify'
 
 export const menuToRoutes = (menu: IRouteRecord[]): RouteRecordRaw[] => {
   const routes: RouteRecordRaw[] = []
@@ -30,14 +30,10 @@ const generateAuthRoutes = (
   roles: rolesType,
   path?: string
 ): RouteRecordRaw[] => {
-  console.log('routes', routes, 'roles', roles, 'path', path)
   const authRoutes: RouteRecordRaw[] = []
   routes?.forEach((item: IRouteRecord) => {
-    console.log('item.meta?.permission?.includes(roles)', item.meta?.permission?.includes(roles))
-    console.log('roles', roles)
     if (!item.meta?.permission?.includes(roles)) return
-    const tmpPath = path.resolve(path, item.path)
-    console.log('tmpPath', tmpPath)
+    const tmpPath = resolve(path || '', item.path)
     const routerItem = {
       path: tmpPath,
       name: item.name,
@@ -50,6 +46,6 @@ const generateAuthRoutes = (
     authRoutes.push(routerItem)
   })
 
-  console.log('authRoutes', authRoutes)
+  // console.log('authRoutes', authRoutes)
   return authRoutes
 }

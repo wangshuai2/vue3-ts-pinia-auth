@@ -18,7 +18,7 @@ const handleLoginBtn = () => {
 
 const login = async (username: string, pwd: string) => {
   await userStore.login(username, pwd)
-  router.push('/permission/page')
+  await router.replace('/permission/page')
 }
 </script>
 
