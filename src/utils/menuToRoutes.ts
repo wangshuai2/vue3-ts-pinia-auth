@@ -2,20 +2,23 @@ import type { IRouteRecord } from '@/types/routes'
 import type { RouteRecordRaw } from 'vue-router'
 import { resolve } from 'path-browserify'
 
-export const menuToRoutes = (menu: IRouteRecord[]): RouteRecordRaw[] => {
+export const menuToRoutes = (menu: IRouteRecord[], path?: string): RouteRecordRaw[] => {
   const routes: RouteRecordRaw[] = []
   menu?.forEach((menuItem) => {
+    const tmpPath = resolve(path || '', menuItem.path)
+    console.log(tmpPath)
     const routerItem = {
-      path: menuItem.path,
+      path: tmpPath,
       name: menuItem.name,
       component: menuItem.component,
       redirect: menuItem.redirect,
-      children: menuItem.children ? menuToRoutes(menuItem.children) : undefined,
+      children: menuItem.children ? menuToRoutes(menuItem.children, tmpPath) : undefined,
       meta: menuItem.meta
     } as RouteRecordRaw
     routes.push(routerItem)
   })
 
+  console.log('routes', routes)
   return routes
 }
 

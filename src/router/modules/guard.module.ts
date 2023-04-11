@@ -2,9 +2,10 @@ import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/modules/user.store'
 import { useRouteStore } from '@/stores/modules/route.store'
-import { router } from '..'
 
-export const createPermissionGuard = (
+let refreshInitFlag = true
+
+export const createPermissionGuard = async (
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
   next: NavigationGuardNext
@@ -12,31 +13,19 @@ export const createPermissionGuard = (
   const { token, roles } = storeToRefs(useUserStore())
   const routeStore = useRouteStore()
 
-  if (!routeStore.isInitAuthRoute) {
-    routeStore.generateRoutes(roles.value)
-    // return
-  }
-
-  console.log(Boolean(token.value), 'token.value')
-
-  // if (router.hasRoute(to.name as string)) {
-  //   if (to.name === 'Login') {
-  //     if (token.value) {
-  //       next({ path: '/', replace: true })
-  //     } else {
-  //       next()
-  //     }
-  //   } else {
-  //     next()
-  //   }
-  // } else {
-  //   next({ path: '/404', replace: true })
-  // }
-  if (!router.hasRoute(to.name as string)) {
-    next({ path: '/404', replace: true })
-  } else if (to.name === 'Login' && token.value) {
-    next({ path: '/', replace: true })
+  if (!token.value) {
+    if (to.name === 'Login') {
+      next()
+    } else {
+      next({ path: '/login', replace: true })
+    }
   } else {
-    next()
+    if (refreshInitFlag) {
+      await routeStore.generateRoutes(roles.value)
+      next({ ...to, replace: true })
+      refreshInitFlag = false
+    } else {
+      next()
+    }
   }
 }
