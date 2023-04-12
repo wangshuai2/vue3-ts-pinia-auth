@@ -4,9 +4,18 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
     version: 2.1.0(vue@3.2.47)
+  '@vueuse/core':
+    specifier: ^9.13.0
+    version: 9.13.0(vue@3.2.47)
   element-plus:
     specifier: ^2.3.3
     version: 2.3.3(vue@3.2.47)
+  lodash-es:
+    specifier: ^4.17.21
+    version: 4.17.21
+  normalize.css:
+    specifier: ^8.0.1
+    version: 8.0.1
   path-browserify:
     specifier: ^1.0.1
     version: 1.0.1
@@ -60,18 +69,21 @@ devDependencies:
   prettier:
     specifier: ^2.8.4
     version: 2.8.4
+  sass:
+    specifier: ^1.62.0
+    version: 1.62.0
   typescript:
     specifier: ~4.8.4
     version: 4.8.4
   unplugin-auto-import:
     specifier: ^0.15.2
-    version: 0.15.2
+    version: 0.15.2(@vueuse/core@9.13.0)
   unplugin-vue-components:
     specifier: ^0.24.1
     version: 0.24.1(vue@3.2.47)
   vite:
     specifier: ^4.1.4
-    version: 4.1.4(@types/node@18.14.2)
+    version: 4.1.4(@types/node@18.14.2)(sass@1.62.0)
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: 2.0.1(vite@4.1.4)
@@ -778,7 +790,6 @@ packages:
 
   /@types/web-bluetooth@0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
-    dev: false
 
   /@typescript-eslint/eslint-plugin@5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.34.0)(typescript@4.8.4):
     resolution: {integrity: sha512-1MeobQkQ9tztuleT3v72XmY0XuKXVXusAhryoLuU5YZ+mXoYKZP9SQ7Flulh1NX4DTjpGTc2b/eMu4u7M7dhnQ==}
@@ -920,7 +931,7 @@ packages:
       '@babel/core': 7.21.4
       '@babel/plugin-transform-typescript': 7.21.3(@babel/core@7.21.4)
       '@vue/babel-plugin-jsx': 1.1.1(@babel/core@7.21.4)
-      vite: 4.1.4(@types/node@18.14.2)
+      vite: 4.1.4(@types/node@18.14.2)(sass@1.62.0)
       vue: 3.2.47
     transitivePeerDependencies:
       - supports-color
@@ -933,7 +944,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.4(@types/node@18.14.2)
+      vite: 4.1.4(@types/node@18.14.2)(sass@1.62.0)
       vue: 3.2.47
     dev: true
 
@@ -1128,11 +1139,9 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: false
 
   /@vueuse/metadata@9.13.0:
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
-    dev: false
 
   /@vueuse/shared@9.13.0(vue@3.2.47):
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
@@ -1141,7 +1150,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: false
 
   /acorn-jsx@5.3.2(acorn@8.8.2):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2422,6 +2430,10 @@ packages:
     hasBin: true
     dev: true
 
+  /immutable@4.3.0:
+    resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
+    dev: true
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -3041,6 +3053,10 @@ packages:
     resolution: {integrity: sha512-Wj7+EJQ8mSuXr2iWfnujrimU35R2W4FAErEyTmJoJ7ucwTn2hOUSsRehMb5RSYkxXGTM7Y9QpvPmp++w5ftoJw==}
     dev: false
 
+  /normalize.css@8.0.1:
+    resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
+    dev: false
+
   /npm-run-all@4.1.5:
     resolution: {integrity: sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==}
     engines: {node: '>= 4'}
@@ -3497,6 +3513,16 @@ packages:
       ret: 0.1.15
     dev: true
 
+  /sass@1.62.0:
+    resolution: {integrity: sha512-Q4USplo4pLYgCi+XlipZCWUQz5pkg/ruSSgJ0WRDSb/+3z9tXUOkQ7QPYn4XrhZKYAK4HlpaQecRwKLJX6+DBg==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.0
+      source-map-js: 1.0.2
+    dev: true
+
   /scule@1.0.0:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
     dev: true
@@ -3950,7 +3976,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unplugin-auto-import@0.15.2:
+  /unplugin-auto-import@0.15.2(@vueuse/core@9.13.0):
     resolution: {integrity: sha512-Wivfu+xccgvEZG8QtZcIvt6napfX9wyOFqM//7FHOtev8+k+dp3ykiqsEl6TODgHmqTTBeQX4Ah1JvRgUNjlkg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3964,6 +3990,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.2
       '@rollup/pluginutils': 5.0.2
+      '@vueuse/core': 9.13.0(vue@3.2.47)
       local-pkg: 0.4.3
       magic-string: 0.30.0
       minimatch: 7.4.6
@@ -4075,12 +4102,12 @@ packages:
       pathe: 0.2.0
       svg-baker: 1.7.0
       svgo: 2.8.0
-      vite: 4.1.4(@types/node@18.14.2)
+      vite: 4.1.4(@types/node@18.14.2)(sass@1.62.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@4.1.4(@types/node@18.14.2):
+  /vite@4.1.4(@types/node@18.14.2)(sass@1.62.0):
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -4110,6 +4137,7 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.2
       rollup: 3.20.2
+      sass: 1.62.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -4127,7 +4155,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.47
-    dev: false
 
   /vue-eslint-parser@9.1.1(eslint@8.34.0):
     resolution: {integrity: sha512-C2aI/r85Q6tYcz4dpgvrs4wH/MqVrRAVIdpYedrxnATDHHkb+TroeRcDpKWGZCx/OcECMWfz7tVwQ8e+Opy6rA==}

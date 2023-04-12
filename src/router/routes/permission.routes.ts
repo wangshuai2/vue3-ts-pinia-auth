@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { CirclePlus } from '@element-plus/icons-vue'
+import { shallowRef } from 'vue'
 
 export const PERMISSION_ROUTES: RouteRecordRaw[] = [
   {
@@ -8,20 +9,66 @@ export const PERMISSION_ROUTES: RouteRecordRaw[] = [
     component: () => import('@/views/permission/index.vue'),
     children: [
       {
-        path: 'page',
-        name: 'PermissionPage',
+        path: 'page1',
+        name: 'PermissionPage1',
         component: () => import('@/views/permission/page.vue'),
         meta: {
           title: '页面权限',
           permission: ['admin', 'editor'],
-          icon: 'virtual:Flash'
+          icon: 'Flash'
+        }
+      },
+      {
+        path: 'page2',
+        name: 'PermissionPage2',
+        component: () => import('@/views/permission/page.vue'),
+        meta: {
+          title: '页面权限',
+          permission: ['admin', 'editor'],
+          icon: 'Flash',
+          hidden: false
+        },
+        children: [
+          {
+            path: 'page2-1',
+            name: 'PermissionPage2-1',
+            component: () => import('@/views/permission/page.vue'),
+            meta: {
+              title: '页面权限2-1',
+              permission: ['admin', 'editor'],
+              icon: 'Flash',
+              hidden: false
+            }
+          },
+          {
+            path: 'page2-2',
+            name: 'PermissionPage2-2',
+            component: () => import('@/views/permission/page.vue'),
+            meta: {
+              title: '页面权限2-2',
+              permission: ['admin', 'editor'],
+              icon: 'Flash',
+              hidden: false
+            }
+          }
+        ]
+      },
+      {
+        path: 'page3',
+        name: 'PermissionPage3',
+        component: () => import('@/views/permission/page.vue'),
+        meta: {
+          title: '页面权限',
+          permission: ['admin', 'editor'],
+          icon: 'Flash',
+          hidden: true
         }
       }
     ],
     meta: {
       title: '权限测试页',
       permission: ['admin'],
-      icon: 'virtual:Flash'
+      icon: 'FaceDizzy'
     }
   },
   {
@@ -31,7 +78,7 @@ export const PERMISSION_ROUTES: RouteRecordRaw[] = [
     meta: {
       title: '登录后测试页',
       permission: ['admin'],
-      icon: CirclePlus
+      icon: shallowRef(CirclePlus)
     }
   },
   {
@@ -50,6 +97,17 @@ export const PERMISSION_ROUTES: RouteRecordRaw[] = [
     meta: {
       title: '登录后测试页3',
       permission: ['admin']
-    }
+    },
+    children: [
+      {
+        path: '/signed3-1',
+        name: 'Signed3-1',
+        component: () => import('@/views/signed/index.vue'),
+        meta: {
+          title: '登录后测试页3-1',
+          permission: ['admin']
+        }
+      }
+    ]
   }
 ]

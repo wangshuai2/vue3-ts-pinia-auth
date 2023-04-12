@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="200px">
+      <el-aside>
         <LayoutMenu />
       </el-aside>
       <el-container>
@@ -19,4 +19,8 @@
 import LayoutMenu from './LayoutMenu/index.vue'
 </script>
 
-<style scoped></style>
+<style scoped>
+.common-layout {
+  --el-aside-width: 262px;
+}
+</style>

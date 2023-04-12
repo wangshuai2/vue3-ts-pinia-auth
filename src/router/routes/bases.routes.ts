@@ -13,12 +13,20 @@ export const BASE_ROUTES: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录',
+      hidden: true
+    }
   },
   {
     path: '/404',
     name: 'NotFound',
-    component: () => import('@/views/NotFoundView.vue')
+    component: () => import('@/views/NotFoundView.vue'),
+    meta: {
+      title: '未找到',
+      hidden: true
+    }
   },
   {
     path: '/test',
@@ -30,6 +38,10 @@ export const BASE_ROUTES: RouteRecordRaw[] = [
         name: 'Test1',
         component: () => import('@/views/NotFoundView.vue')
       }
-    ]
+    ],
+    meta: {
+      title: '测试',
+      hidden: true
+    }
   }
 ]
