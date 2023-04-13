@@ -4,6 +4,7 @@ import { useCreatePinia } from './stores'
 import { setupRouter } from './router'
 
 import 'normalize.css'
+import 'virtual:uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import 'virtual:svg-icons-register'
 import SvgIcon from './components/SvgIcon/index.vue'

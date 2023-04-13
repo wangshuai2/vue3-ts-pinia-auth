@@ -7,43 +7,51 @@
     <el-scrollbar class="aside-scrollbar">
       <el-menu
         :default-active="currentRoute"
-        :collapse="true"
+        :collapse="collapsed"
+        popper-effect="dark"
         unique-opened
         router
         collapse-transition
-        @open="handleOpen"
-        @close="handleClose"
       >
         <MenuItem v-for="item in routesList" :key="item.path" :item="item" />
       </el-menu>
     </el-scrollbar>
     <div class="collpase">
-      <div class="collpase-icon">
-        <el-icon :size="26"><DArrowLeft /></el-icon>
+      <div class="collpase-icon" @click="handleToggleCollapse">
+        <el-icon :size="26" color="#000">
+          <DArrowRight v-show="collapsed" />
+          <DArrowLeft v-show="!collapsed" />
+        </el-icon>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouteStore } from '@/stores/modules/route.store'
-import { storeToRefs } from 'pinia'
-import MenuItem from './MenuItem.vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { DArrowLeft } from '@element-plus/icons-vue'
+import { storeToRefs } from 'pinia'
+import { useRouteStore } from '@/stores/modules/route.store'
+import { useSystemStore } from '@/stores/modules/system.store'
+import MenuItem from './MenuItem.vue'
+import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-
+// 获取路由列表
 const { routesList } = storeToRefs(useRouteStore())
-console.log(routesList.value)
+// console.log(routesList.value)
 
+// 获取当前路由
 const route = useRoute()
+// 获取当前路由的 meta.activeMenu || route.fullPath
 const currentRoute = route.meta.activeMenu || route.fullPath
+
+const systemStore = useSystemStore()
+const collapsed = computed(() => systemStore.collapsed)
+// 折叠菜单
+const handleToggleCollapse = () => {
+  console.log('折叠菜单')
+  systemStore.toggleCollapsed()
+}
 </script>
 
 <style scoped lang="scss">
@@ -73,6 +81,10 @@ $collpase-height: 135px;
     height: 68px;
     line-height: 68px;
 
+    .el-icon {
+      font-size: 24px;
+    }
+
     &:hover {
       background-color: hsla(0, 0%, 100%, 0.16);
       border-radius: 10px;
@@ -86,10 +98,23 @@ $collpase-height: 135px;
     height: 68px;
     line-height: 68px;
 
+    .el-icon {
+      font-size: 24px;
+    }
+
     &:hover,
     &.is-active {
       background-color: hsla(0, 0%, 100%, 0.16);
       border-radius: 10px;
+    }
+  }
+
+  :deep(.el-menu--collapse) {
+    span {
+      display: none;
+    }
+    .el-sub-menu__icon-arrow {
+      display: none;
     }
   }
 
